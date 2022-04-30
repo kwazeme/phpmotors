@@ -1,0 +1,133 @@
+/* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.  */
+html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
+
+/*----------- apply a natural box layout model to all elements --------------*/
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+:root {
+    --grey-one: #bababa;
+    --grey-two: #8d8d8d;
+    --light-blue: #a6cbeb;
+    --darker-blue: #1A4A75;
+    --dark-blue: #4c96d7;
+    --black3a: #3a3a3a;
+    --whiteff: #ffffff;
+
+    /* Fonts used */
+    --alegraya-font-family: 'Alegreya', serif;
+}
+
+/*----------- BODY --------------*/
+body {
+    font-size: 16px;
+    font-family: var(--alegraya-font-family);
+    background-color: var(--whiteff);
+    max-width: 960px;
+    margin: auto;
+    border: 4px solid var(--dark-blue);
+    border-radius: 10px;
+}
+
+
+/*----------- HEADER --------------*/
+header {
+    padding: .5rem 2%;
+    background-color: var(--whiteff);
+}
+header h1 {margin: 0;}
+header h2 {margin: 0; font-weight: normal;}
+
+/*----------- NAVIGATION --------------*/
+nav {
+    background-color: var(--black3a);
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+nav ul li {
+    float: left;
+    width: 25%;
+}
+nav ul li a {
+    display: block;
+    background-color: var(--black3a);
+    color: var(--whiteff);
+    border-left: 1px solid var(--black3a);
+    padding: .5rem 0;
+    text-decoration: none;
+    font-size: .9rem;
+    text-align: center;
+}
+nav ul li:first-child a {border-left: none;}
+
+nav ul li a:hover {
+    background-color: var(--darker-blue);
+    color: var(--whiteff);
+}
+nav ul li.active a {
+    background-color: var(--darker-blue);
+    color: var(--whiteff);
+}
+/*----------- MAIN --------------*/
+main {
+    padding: 0 2%;
+    min-height: 10rem;
+    background-color: var(--whiteff);
+}
+
+header figure.logo {
+    float: left;    
+}
+
+header a {
+    color: var(--black3a);
+    padding: .9rem 0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    float: right;
+    
+}
+section.ftop {
+    display: flex;
+    flex-direction: column;
+}
+
+/*----------- FOOTER --------------*/
+footer {
+    background-color: var(--grey-one);
+    padding: .5rem 2%;
+    text-align: center;
+}
+
+aside {
+    color: var(--darker-blue);
+}
+.upgrades { margin: 0;}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+  }
+  
+  .box {
+    flex: 0 0 calc(50% - 25px);
+    background: var(--dark-blue);
+    height: 80px;
+    margin: 0 0 25px 25px;
+    text-align: center;
+  }
+  .box img {
+      width: 50px;
+  }
+
+  .box a {
+      color: black;}
+
+/*----- Clearfix: Force an Element not to collapse -----*/
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}

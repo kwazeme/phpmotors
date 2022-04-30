@@ -1,0 +1,25 @@
+@media only screen and (min-width: 64rem) {
+    html { 
+        background: url(small_check.webp) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+header, nav, main, footer {
+    max-width: 64rem;
+    margin:auto;
+}
+/* Upgrades CSS */
+section.ftop {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+}
