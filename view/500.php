@@ -24,7 +24,8 @@
 
 <main class="content clearfix">
     <!-- MAIN CONTENT GOES HERE -->
-<h1>Content Title Here</h1>
+<h1>Server Error</h1>
+<p>Sorry our server seems to be experiencing some technical difficulties.</p>
 
 
 </main>
