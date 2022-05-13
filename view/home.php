@@ -8,10 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/medium.css">
-    <link rel="stylesheet" href="css/large.css">
+    <link rel="stylesheet" href="/phpmotors/css/normalize.css">
+    <link rel="stylesheet" href="/phpmotors/css/base.css">
+    <link rel="stylesheet" href="/phpmotors/css/medium.css">
+    <link rel="stylesheet" href="/phpmotors/css/large.css">
     <title>PHP Motors</title>
 </head>
 <body>
@@ -19,7 +19,9 @@
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
 <!-- require page navigation -->
     <nav class="clearfix">
-    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';?>
+    <?php echo "$navList";
+    # require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
+    ?>
 </nav>
 
 <main class="content clearfix">
@@ -29,7 +31,7 @@
     <h2>DMC Delorean</h2>
     <p>3 Cup holders 
     <br />Superman doors
-    <br />Fuxzzy dice!
+    <br />Fuzzy dice!
     </p>
 </aside>
 <img src="/phpmotors/images/site/own_today150.png" alt="own delorean">

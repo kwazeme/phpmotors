@@ -8,10 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/medium.css">
-    <link rel="stylesheet" href="css/large.css">
+    <link rel="stylesheet" href="/phpmotors/css/normalize.css">
+    <link rel="stylesheet" href="/phpmotors/css/base.css">
+    <link rel="stylesheet" href="/phpmotors/css/medium.css">
+    <link rel="stylesheet" href="/phpmotors/css/large.css">
     <title>PHP Motors</title>
 </head>
 <body>
@@ -24,7 +24,8 @@
 
 <main class="content clearfix">
     <!-- MAIN CONTENT GOES HERE -->
-<h1>Content Title Here</h1>
+<h1>Server Error</h1>
+<p>Sorry our server seems to be experiencing some technical difficulties.</p>
 
 
 </main>
