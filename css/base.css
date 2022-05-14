@@ -12,6 +12,7 @@ html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
     --dark-blue: #4c96d7;
     --black3a: #3a3a3a;
     --whiteff: #ffffff;
+    --crimson: #cc1e2b;
 
     /* Fonts used */
     --alegraya-font-family: 'Alegreya', serif;
@@ -131,4 +132,135 @@ aside {
   display: table;
   clear: both;
 }
-/* Enhancement 1 Demo: https://somup.com/c3fvXbO5UK */
+
+/* Login page CSS */
+
+main.content {
+  text-align: center;
+}
+
+#login-form-wrap, #register-form-wrap{
+  background-color: var(--whiteff);
+  max-width: 300px;
+  margin: 30px auto;
+  text-align: left;
+  padding: 20px 0 0 0;
+  border-radius: 4px;
+  box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
+}
+
+#login-form {
+  padding: 0 50px;
+}
+#register-form {
+  padding: 50px;
+}
+
+input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 4px;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 0 0 0 10px;
+  margin: 0;
+  color: var(--grey-two);
+  border: 1px solid var(--grey-two);
+  font-style: normal;
+  font-size: 16px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: relative;
+  display: inline-block;
+  background: none;
+}
+input[type="text"]:focus,
+input[type="email"]:focus {
+  border-color: var(--darker-blue);
+}
+input[type="text"]:focus:invalid,
+input[type="email"]:focus:invalid {
+  color:var(--crimson);
+  border-color: var(--crimson);
+}
+input[type="text"]:valid ~ .validation,
+input[type="email"]:valid ~ .validation {
+  display: block;
+  border-color: #0C0;
+}
+input[type="text"]:valid ~ .validation span,
+input[type="email"]:valid ~ .validation span {
+  background: #0C0;
+  position: absolute;
+  border-radius: 6px;
+}
+input[type="text"]:valid ~ .validation span:first-child,
+input[type="email"]:valid ~ .validation span:first-child {
+  top: 30px;
+  left: 14px;
+  width: 20px;
+  height: 3px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+input[type="text"]:valid ~ .validation span:last-child,
+input[type="email"]:valid ~ .validation span:last-child {
+  top: 35px;
+  left: 8px;
+  width: 11px;
+  height: 3px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.validation {
+  display: none;
+  position: absolute;
+  content: " ";
+  height: 60px;
+  width: 30px;
+  right: 15px;
+  top: 0px;
+}
+
+input[type="submit"] {
+  border: none;
+  display: block;
+  background-color: var(--darker-blue);
+  color: var(--whiteff);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  font-size: 18px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+input[type="submit"]:hover {
+  background-color: var(--darker-blue);
+  font-size: x-large;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+#create-account-wrap {
+  background-color: var(--grey-one);
+  color: var(--whiteff);
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 0 0 4px 4px;
+}
