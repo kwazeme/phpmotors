@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/phpmotors/css/base.css">
     <link rel="stylesheet" href="/phpmotors/css/medium.css">
     <link rel="stylesheet" href="/phpmotors/css/large.css">
-    <title>PHP Motors</title>
+    <title>PHP Motors, Vehicle Management</title>
 </head>
 <body>
     <!-- Require page header -->
@@ -20,38 +20,23 @@
 <!-- require page navigation -->
     <nav class="clearfix">
     <?php echo "$navList";
-    // require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
+    # require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
     ?>
 </nav>
-
 <main class="content clearfix formpage">
     <!-- MAIN CONTENT GOES HERE -->
-    <h1> User Login Form </h1>   
-    <div id="login-form-wrap">
-    <?php 
-      if (isset($message)) {
-        # code...
-        echo "$message";
-      }
-      ?>
-  <form id="login-form">
-    <p>
-    <label for="cEmail">Username</label><span style="color:#B30000">*</span><br />
-    <input type="email" id="cEmail" name="clientEmail" placeholder="email@gmail.com" required><i class="validation"><span></span><span></span></i>
-    </p>
-    <p>
-    <label for="cPassword">Password</label><span style="color:#B30000">*</span><br />
-    <input type="password" id="cPassword" name="clientPassword" placeholder="Password" required><i class="validation"><span></span><span></span></i>
-    </p>
-    <p>
-    <input type="submit" id="login" value="Login">
-    </p>
-  </form>
-  <div id="create-account-wrap">
-    No account? 
-    <?php echo "<a href='/phpmotors/accounts/index.php?action=registration".urlencode($register['registration'])."' title='Create your account'>Create Account</a>" ?>
-  </div><!--create-account-wrap-->
-</div><!--login-form-wrap-->
+    <h1>Vehicles Management </h1>   
+    <div id="register-form-wrap">
+   <form action="/phpmotors/vehicles/index.php">
+    <input type="submit" class="addClassification" value="Add Classification">
+    <input type="hidden" name="action" value="addclassification">
+    </form>
+    <br />
+    <form action="/phpmotors/vehicles/index.php">
+    <input type="submit" class="addVehicle" value="Add Vehicle">
+    <input type="hidden" name="action" value="addVehicle">
+    </form>
+    </div>
 </main>
 <!-- Require page footer -->
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>

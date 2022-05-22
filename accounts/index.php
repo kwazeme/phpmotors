@@ -13,7 +13,10 @@ require_once '../library/connections.php';
 require_once '../model/main-model.php';
 
 // Get the Accouunt model for use as needed.
-require_once '../accounts/index.php';
+// require_once '../accounts/index.php';
+
+// Get the sccounts model
+require_once '../model/accounts-model.php';
 
 // Gets the array of classifications
 $classifications = getClassifications();
@@ -50,9 +53,45 @@ switch ($action) {
         # code...
         include '../view/login.php';
         break;
-    case 'register':
+    case 'registration':
             # code...
-        include '../view/register.php';
+        include '../view/registration.php';
+        break;
+    case 'register':
+        // echo 'You are in the register case statment';
+
+        // Filter and store the data
+        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
+        $clientLastname = filter_input(INPUT_POST, 'clientLastname');
+        $clientEmail = filter_input(INPUT_POST, 'clientEmail');
+        $clientPassword = filter_input(INPUT_POST, 'clientPassword');
+
+        // Check for missing data
+        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)) {
+            # code...
+            $message = "<p class='error'>&#9888;&#65039; <br>Please provide information for all required form fields.</p>";
+            include '../view/registration.php';
+            exit;
+        }
+
+        // Send the data to the model
+        $regOutcome = regClient($clientFirstname,$clientLastname,$clientEmail,$clientPassword);
+        // var_dump ($clientFirstname, $clientLastname, $clientEmail, $clientPassword);
+        // exit;
+
+        // Check and report the result
+        if ($regOutcome === 1) {
+            # code...
+            $message = "<p class='success'>&#10003;<br> Thanks for registering $clientFirstname. <br> 
+            Please use your email and password to login.</p>";
+            require '../view/login.php';
+            exit;
+        } else {
+            # code...
+            $message = "<p class='error'>&#x27F3; <br>Sorry $clientFirstname, <br> but the registration failed. Please try again</p>";
+            include '../view/registration.php';
+            exit;
+        }
         break;
     default:
         # code...

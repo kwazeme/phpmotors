@@ -24,30 +24,36 @@
     ?>
 </nav>
 
-<main class="content clearfix">
+<main class="content clearfix formpage">
     <!-- MAIN CONTENT GOES HERE -->
     <h1> User Registration Form </h1>   
     <div id="register-form-wrap">
-  <form id="register-form">
+      <?php 
+      if (isset($message)) {
+        echo "$message";
+      }
+      ?>
+  <form id="register-form" action="/phpmotors/accounts/index.php" method="post">
   <p>
     <label for="clientFirstname">Firstname</label><span style="color:#B30000">*</span><br />
-    <input type="text" id="clientFirstname" class="required-field" name="clientFirstname" placeholder="Firstname" required><i class="validation"><span></span><span></span></i>
+    <input type="text" id="clientFirstname" name="clientFirstname" placeholder="Firstname" required>
     </p>
     <p>
     <p>
     <label for="clientLastname">Lastname</label><span style="color:#B30000">*</span><br />
-    <input type="text" id="clientLastname" name="clientLastname" placeholder="Lastname" required><i class="validation"><span></span><span></span></i>
+    <input type="text" id="clientLastname" name="clientLastname" placeholder="Lastname" required>
     </p>
     <p>
-    <label for="username">Username</label><span style="color:#B30000">*</span><br />
-    <input type="email" id="username" name="username" placeholder="email@gmail.com" required><i class="validation"><span></span><span></span></i>
+    <label for="clientEmail">Username</label><span style="color:#B30000">*</span><br />
+    <input type="email" id="clientEmail" name="clientEmail" placeholder="email@gmail.com" required>
     </p>
     <p>
-    <label for="password">Password</label><span style="color:#B30000">*</span><br />
-    <input type="password" id="password" name="password" placeholder="Password" required><i class="validation"><span></span><span></span></i>
+    <label for="clientPassword">Password</label><span style="color:#B30000">*</span><br />
+    <input type="password" id="clientPassword" name="clientPassword" placeholder="Password" required>
     </p>
     <p>
-    <input type="submit" id="login" value="Register">
+    <input type="submit" name="submit" id="regbtn" value="register">
+    <input type="hidden" name="action" value="register">
     </p>
   </form>
 </div><!--form-wrap-->

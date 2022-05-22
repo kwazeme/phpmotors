@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/phpmotors/css/base.css">
     <link rel="stylesheet" href="/phpmotors/css/medium.css">
     <link rel="stylesheet" href="/phpmotors/css/large.css">
-    <title>PHP Motors</title>
+    <title>Add New Vehicle Classification</title>
 </head>
 <body>
     <!-- Require page header -->
@@ -20,38 +20,34 @@
 <!-- require page navigation -->
     <nav class="clearfix">
     <?php echo "$navList";
-    // require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
+    # require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
     ?>
 </nav>
-
 <main class="content clearfix formpage">
     <!-- MAIN CONTENT GOES HERE -->
-    <h1> User Login Form </h1>   
-    <div id="login-form-wrap">
-    <?php 
-      if (isset($message)) {
+    <h1>Add Car Classification</h1>  
+      <?php 
+      if (isset($message) && isset($_POST['submit'])) {
         # code...
         echo "$message";
       }
-      ?>
-  <form id="login-form">
+      ?> 
+<div id="register-form-wrap">
+
+  <form id="register-form" action="/phpmotors/vehicles/index.php" method="post">
     <p>
-    <label for="cEmail">Username</label><span style="color:#B30000">*</span><br />
-    <input type="email" id="cEmail" name="clientEmail" placeholder="email@gmail.com" required><i class="validation"><span></span><span></span></i>
+        Please provide information for all empty form fields.
+    </p>  
+    <p>
+    <label for="className">classification Name</label><span style="color:#B30000">*</span><br />
+    <input type="text" id="className" name="classificationName" placeholder="eg off-road" >
     </p>
     <p>
-    <label for="cPassword">Password</label><span style="color:#B30000">*</span><br />
-    <input type="password" id="cPassword" name="clientPassword" placeholder="Password" required><i class="validation"><span></span><span></span></i>
-    </p>
-    <p>
-    <input type="submit" id="login" value="Login">
+    <input type="submit" name="submit" id="classbtn" value="Add">
+    <input type="hidden" name="action" value="addclassification">
     </p>
   </form>
-  <div id="create-account-wrap">
-    No account? 
-    <?php echo "<a href='/phpmotors/accounts/index.php?action=registration".urlencode($register['registration'])."' title='Create your account'>Create Account</a>" ?>
-  </div><!--create-account-wrap-->
-</div><!--login-form-wrap-->
+</div>
 </main>
 <!-- Require page footer -->
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>

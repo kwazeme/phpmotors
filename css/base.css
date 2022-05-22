@@ -135,11 +135,11 @@ aside {
 
 /* Login page CSS */
 
-main.content {
+main.formpage {
   text-align: center;
 }
 
-#login-form-wrap, #register-form-wrap{
+#login-form-wrap, #register-form-wrap {
   background-color: var(--whiteff);
   max-width: 300px;
   margin: 30px auto;
@@ -152,7 +152,7 @@ main.content {
 #login-form {
   padding: 0 50px;
 }
-#register-form {
+#register-form{
   padding: 50px;
 }
 
@@ -263,4 +263,19 @@ input[type="submit"]:hover {
   width: 100%;
   padding: 10px 0;
   border-radius: 0 0 4px 4px;
+}
+p.error {
+  padding: 10px;
+  color: var(--crimson);
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid var(--crimson);
+}
+
+p.success {
+  padding: 10px;
+  color: var(--darker-blue);
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid var(--darker-blue);
 }
