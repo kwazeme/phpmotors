@@ -190,6 +190,9 @@ input[type="text"]:focus:invalid,
 input[type="email"]:focus:invalid {
   color:var(--crimson);
   border-color: var(--crimson);
+  background-image: url(invalid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
 }
 input[type="text"]:valid ~ .validation,
 input[type="email"]:valid ~ .validation {

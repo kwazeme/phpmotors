@@ -18,6 +18,9 @@ require_once '../model/main-model.php';
 // Get the sccounts model
 require_once '../model/accounts-model.php';
 
+// Get the functions library
+require_once '../library/functions.php';
+
 // Gets the array of classifications
 $classifications = getClassifications();
 /* 
@@ -61,21 +64,27 @@ switch ($action) {
         // echo 'You are in the register case statment';
 
         // Filter and store the data
-        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
-        $clientLastname = filter_input(INPUT_POST, 'clientLastname');
-        $clientEmail = filter_input(INPUT_POST, 'clientEmail');
-        $clientPassword = filter_input(INPUT_POST, 'clientPassword');
+        $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        // validate and return valid email address
+        $clientEmail = checkEmail($clientEmail);
+        // validate $clientPassword
+        $checkPassword = checkPassword($clientPassword);
 
         // Check for missing data
-        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)) {
+        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)) {
             # code...
             $message = "<p class='error'>&#9888;&#65039; <br>Please provide information for all required form fields.</p>";
             include '../view/registration.php';
             exit;
         }
+        // Hash the checked password
+        $hashedPassword = password_hash($checkPassword, PASSWORD_DEFAULT);
 
         // Send the data to the model
-        $regOutcome = regClient($clientFirstname,$clientLastname,$clientEmail,$clientPassword);
+        $regOutcome = regClient($clientFirstname,$clientLastname,$clientEmail,$hashedPassword);
         // var_dump ($clientFirstname, $clientLastname, $clientEmail, $clientPassword);
         // exit;
 
@@ -90,6 +99,23 @@ switch ($action) {
             # code...
             $message = "<p class='error'>&#x27F3; <br>Sorry $clientFirstname, <br> but the registration failed. Please try again</p>";
             include '../view/registration.php';
+            exit;
+        }
+        break;
+    case 'Login':
+        # code...
+        # echo 'sends login data to server';
+        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        // validate and return valid email address
+        $clientEmail = checkEmail($clientEmail);
+        // validate $clientPassword
+        $checkPassword = checkPassword($clientPassword);
+        // Check for missing data
+        if (empty($clientEmail) || empty($checkPassword)) {
+            # code...
+            $message = "<p class='error'>&#9888;&#65039; <br>Please provide information for all required form fields.</p>";
+            include '../view/login.php';
             exit;
         }
         break;

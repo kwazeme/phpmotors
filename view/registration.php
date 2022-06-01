@@ -36,20 +36,21 @@
   <form id="register-form" action="/phpmotors/accounts/index.php" method="post">
   <p>
     <label for="clientFirstname">Firstname</label><span style="color:#B30000">*</span><br />
-    <input type="text" id="clientFirstname" name="clientFirstname" placeholder="Firstname" required>
+    <input type="text" id="clientFirstname" name="clientFirstname" placeholder="Firstname" <?php if(isset($clientFirstname)){echo "value='$clientFirstname'";} ?> required>
     </p>
     <p>
     <p>
     <label for="clientLastname">Lastname</label><span style="color:#B30000">*</span><br />
-    <input type="text" id="clientLastname" name="clientLastname" placeholder="Lastname" required>
+    <input type="text" id="clientLastname" name="clientLastname" placeholder="Lastname" <?php if(isset($clientLastname)){echo "value='$clientLastname'";} ?> required>
     </p>
     <p>
     <label for="clientEmail">Username</label><span style="color:#B30000">*</span><br />
-    <input type="email" id="clientEmail" name="clientEmail" placeholder="email@gmail.com" required>
+    <input type="email" id="clientEmail" name="clientEmail" placeholder="Enter a valid email address" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> required>
     </p>
     <p>
-    <label for="clientPassword">Password</label><span style="color:#B30000">*</span><br />
-    <input type="password" id="clientPassword" name="clientPassword" placeholder="Password" required>
+    <span>Make sure password is at least 8 characters and has at least 1 uppercase character, 1 number and 1 special character.</span>
+    <label for="clientPassword">Enter Password</label><span style="color:#B30000">*</span><br />
+    <input type="password" id="clientPassword" name="clientPassword" placeholder="Password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" >
     </p>
     <p>
     <input type="submit" name="submit" id="regbtn" value="register">

@@ -37,13 +37,15 @@
   <form id="login-form">
     <p>
     <label for="cEmail">Username</label><span style="color:#B30000">*</span><br />
-    <input type="email" id="cEmail" name="clientEmail" placeholder="email@gmail.com" required><i class="validation"><span></span><span></span></i>
+    <input type="email" id="cEmail" name="clientEmail" placeholder="email@gmail.com" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> required><i class="validation"><span></span><span></span></i>
     </p>
     <p>
-    <label for="cPassword">Password</label><span style="color:#B30000">*</span><br />
-    <input type="password" id="cPassword" name="clientPassword" placeholder="Password" required><i class="validation"><span></span><span></span></i>
+    <span>Remember valid password is at least 8 characters and has at least 1 uppercase character, 1 number and 1 special character.</span><br>
+    <label for="cPassword">Your Password</label><span style="color:#B30000">*</span><br />
+    <input type="password" id="cPassword" name="clientPassword" placeholder="Password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><i class="validation"><span></span><span></span></i>
     </p>
     <p>
+    <input type="hidden" name="action" value="Login">
     <input type="submit" id="login" value="Login">
     </p>
   </form>
