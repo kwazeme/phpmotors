@@ -19,7 +19,7 @@
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
 <!-- require page navigation -->
     <nav class="clearfix">
-    <?php echo "$navList";
+    <?php echo navBar($classifications); //echo "$navList";
     # require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
     ?>
 </nav>
@@ -36,11 +36,11 @@
 
   <form id="register-form" action="/phpmotors/vehicles/index.php" method="post">
     <p>
-        Please provide information for all empty form fields.
+        Please provide information for all empty form fields. Maximum 30 characters
     </p>  
     <p>
     <label for="className">classification Name</label><span style="color:#B30000">*</span><br />
-    <input type="text" id="className" name="classificationName" placeholder="eg off-road" >
+    <input type="text" id="className" name="classificationName" placeholder="eg off-road" pattern="[a-zA_Z0-9-_]{3,30}" title="Only 3-30 characters and no symbols" required>
     </p>
     <p>
     <input type="submit" name="submit" id="classbtn" value="Add">

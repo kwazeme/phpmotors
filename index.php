@@ -5,6 +5,8 @@
     * 
     * This file controls all traffic to the http://lvh.me/phpmotors/ URL
 */
+// Get the functions library
+require_once 'library/functions.php';
 
 // Get the database connection file.
 require_once 'library/connections.php';
@@ -28,15 +30,16 @@ exit; */
 
 
 // Navigation bar using the $classifications array.
-$navList = '<ul>';
-$navList .= "<li><a href='/phpmotors/index.php' title= 'View the PHP Motors home page'>Home</a></li>";
-foreach ($classifications as $classification) {
-    $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-}
+// $navList = '<ul>';
+// $navList .= "<li><a href='/phpmotors/index.php' title= 'View the PHP Motors home page'>Home</a></li>";
+// foreach ($classifications as $classification) {
+//     $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
+// }
 /* $navList .= '</ul>';
 // Test Navigation List
 echo $navList;
 exit; */
+// echo navBar($classifications);
 
 
 switch ($action) {

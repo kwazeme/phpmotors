@@ -19,7 +19,7 @@
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
 <!-- require page navigation -->
     <nav class="clearfix">
-    <?php echo "$navList";
+    <?php echo navBar($classifications); //echo "$navList";
     # require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
     ?>
 </nav>
@@ -29,12 +29,12 @@
     <div id="register-form-wrap">
    <form action="/phpmotors/vehicles/index.php">
     <input type="submit" class="addClassification" value="Add Classification">
-    <input type="hidden" name="action" value="addclassification">
+    <input type="hidden" name="action" value="add-classification">
     </form>
     <br />
     <form action="/phpmotors/vehicles/index.php">
     <input type="submit" class="addVehicle" value="Add Vehicle">
-    <input type="hidden" name="action" value="addVehicle">
+    <input type="hidden" name="action" value="add-Vehicle">
     </form>
     </div>
 </main>
