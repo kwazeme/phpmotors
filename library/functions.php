@@ -25,7 +25,7 @@ function checkPassword($clientPassword)
 function checkNamelength($classificationName)
 {
     # code...
-    $pattern = '/[A-Za-z0-9-_]{3,30}/';
+    $pattern = '/[A-Za-z0-9-_]{3,30}$/';
     return preg_match($pattern, $classificationName);
 }
 

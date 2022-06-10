@@ -19,7 +19,8 @@
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
 <!-- require page navigation -->
     <nav class="clearfix">
-    <?php echo navBar($classifications); //echo "$navList";
+    <?php echo "$navigation";
+    //echo navBar($classifications); //echo "$navList";
     # require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
     ?>
 </nav>

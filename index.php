@@ -5,6 +5,8 @@
     * 
     * This file controls all traffic to the http://lvh.me/phpmotors/ URL
 */
+// Create or access a session
+session_start();
 // Get the functions library
 require_once 'library/functions.php';
 
@@ -28,20 +30,15 @@ var_dump($classifications);
 echo "</pre>";
 exit; */
 
+// Get navBar
+$navigation = navBar($classifications);
 
-// Navigation bar using the $classifications array.
-// $navList = '<ul>';
-// $navList .= "<li><a href='/phpmotors/index.php' title= 'View the PHP Motors home page'>Home</a></li>";
-// foreach ($classifications as $classification) {
-//     $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-// }
-/* $navList .= '</ul>';
-// Test Navigation List
-echo $navList;
-exit; */
-// echo navBar($classifications);
-
-
+// Check if the firstname cookie exists, and get its value
+if (isset($_COOKIE['firstname'])) {
+    $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+}
+// Switch gthe pages to show
 switch ($action) {
     case 'something':
         # code...

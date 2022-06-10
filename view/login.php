@@ -19,7 +19,8 @@
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
 <!-- require page navigation -->
     <nav class="clearfix">
-    <?php echo navBar($classifications); //echo "$navList";
+    <?php echo "$navigation";
+    // echo navBar($classifications); //echo "$navList";
     // require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
     ?>
 </nav>
@@ -33,8 +34,13 @@
         # code...
         echo "$message";
       }
+
+      if (isset($_SESSION['message'])) {
+        # code...
+        echo $_SESSION['message'];
+      }
       ?>
-  <form id="login-form">
+  <form id="login-form" method="post" action="/phpmotors/accounts/">
     <p>
     <label for="cEmail">Username</label><span style="color:#B30000">*</span><br />
     <input type="email" id="cEmail" name="clientEmail" placeholder="email@gmail.com" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> required><i class="validation"><span></span><span></span></i>
@@ -46,7 +52,7 @@
     </p>
     <p>
     <input type="hidden" name="action" value="Login">
-    <input type="submit" id="login" value="Login">
+    <input type="submit" id="login" value="login">
     </p>
   </form>
   <div id="create-account-wrap">

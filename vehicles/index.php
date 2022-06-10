@@ -5,6 +5,8 @@
     * 
     * This file controls all traffic to the http://lvh.me/vehicles/ URL
 */
+// Create or access a session
+session_start();
 
 // Get the database connection file.
 require_once '../library/connections.php';
@@ -28,7 +30,8 @@ var_dump($classificationsList);
 echo "</pre>";
 exit;
  */
-
+// Get navBar
+$navigation = navBar($classifications);
 // Navigation bar using the $classifications array.
 // $navList = '<ul>';
 // $navList .= "<li><a href='/phpmotors/index.php' title= 'View the PHP Motors home page'>Home</a></li>";
@@ -80,7 +83,8 @@ switch ($action) {
         // Check and report the result
         if($classOutcome === 1){
             # code...
-            include '../view/vehicle-man.php';
+            // include '../view/vehicle-man.php';
+            header("Location:/phpmotors/vehicles/");
             exit;
         } else {
             $message = "<pclass='error'>&#9888;&#65039; <br>Vehicle Classification was not added. Please try again.</p>";

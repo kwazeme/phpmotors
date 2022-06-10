@@ -6,6 +6,9 @@
     * This file controls all traffic to the http://lvh.me/accounts/ URL
 */
 
+// Create or access a session
+session_start();
+
 // Get the database connection file.
 require_once '../library/connections.php';
 
@@ -30,7 +33,8 @@ var_dump($classifications);
 echo "</pre>";
 exit; */
 
-
+// Get navBar
+$navigation = navBar($classifications);
 // // Navigation bar using the $classifications array.
 // $navList = '<ul>';
 // $navList .= "<li><a href='/phpmotors/index.php' title= 'View the PHP Motors home page'>Home</a></li>";
@@ -68,10 +72,21 @@ switch ($action) {
         $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
         $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        
         // validate and return valid email address
         $clientEmail = checkEmail($clientEmail);
-        // validate $clientPassword
+        // validate $clientPassword meets strong password requirements
         $checkPassword = checkPassword($clientPassword);
+
+        // Check for existing email
+        $existingEmail = checkExistingEmail($clientEmail);
+        // Handle exisitng email found during registration
+        if ($existingEmail) {
+            # code...
+            $message = "<p class='error'>&#9888;&#65039; <br>The email address already exists. Do you want to login instead?</p>";
+            include '../view/login.php';
+            exit;
+        }
 
         // Check for missing data
         if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)) {
@@ -90,10 +105,14 @@ switch ($action) {
 
         // Check and report the result
         if ($regOutcome === 1) {
-            # code...
-            $message = "<p class='success'>&#10003;<br> Thanks for registering $clientFirstname. <br> 
-            Please use your email and password to login.</p>";
-            require '../view/login.php';
+            # Set registration success cookie
+            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
+            // Success Message
+            // $message = "<p class='success'>&#10003;<br> Thanks for registering $clientFirstname. <br> 
+            // Please use your email and password to login.</p>";
+            // Success message using session
+            $_SESSION['message'] = "<p class='success'>&#10003;<br> Thanks for registering $clientFirstname. <br> Please use your email and password to login.</p>";
+            header('Location: /phpmotors/accounts/?action=login');
             exit;
         } else {
             # code...
@@ -106,9 +125,10 @@ switch ($action) {
         # code...
         # echo 'sends login data to server';
         $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
-        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         // validate and return valid email address
         $clientEmail = checkEmail($clientEmail);
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+
         // validate $clientPassword
         $checkPassword = checkPassword($clientPassword);
         // Check for missing data
@@ -118,6 +138,29 @@ switch ($action) {
             include '../view/login.php';
             exit;
         }
+        // A valid password exists, proceed with the login process
+        // Query the client data based on email address
+        $clientData = getClient($clientEmail);
+        // Compare the password just submitted against the hashed password for matching
+        $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
+        // If hashes don't match create error and return to the login view
+        if (!$hashCheck) {
+            # code...
+            $message = "<p class='error'>&#9888;&#65039; <br>Please check your password and try again.</p>";
+            include '../view/login.php';
+            exit;
+        }
+        // A valid user exists, log them in
+        $_SESSION['loggedin'] = TRUE;
+        // Remove the password from the array
+        // the array_pop functino removes the last element from an array
+        array_pop($clientData);
+        // Store the array in the session
+        $_SESSION['clientData'] = $clientData;
+        // Send Logged in user to the admin view
+        // include '../view/admin.php';
+        echo "include '../view/admin.php'";
+        exit;
         break;
     default:
         # code...

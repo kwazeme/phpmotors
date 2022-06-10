@@ -282,3 +282,8 @@ p.success {
   font-weight: bold;
   border: 1px solid var(--darker-blue);
 }
+/* p.greeting {
+  color: var(--darker-blue);
+  font-weight: bold;
+  float: right;
+} */
