@@ -48,5 +48,15 @@ function navBar($classifications)
     return $navList;
 }
 
+// Function to call for management panel to be loaded
+function manageLink()
+{   
+    $link = "<a href='/phpmotors/vehicles/index.php?action=manage' title='Manage Vehicles & Classifications'>Management Panel</a>";
+    $linkDiv = '<div id="create-account-wrap">';
+    $linkDiv .= 'Want to Manage Vehicle? <br>';
+    $linkDiv .= "$link";
+    $linkDiv .= '</div>';
+    return $linkDiv;
+}
 
 ?>

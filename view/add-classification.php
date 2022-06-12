@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php
+    $level = $_SESSION['clientData']['clientLevel'];
+    if ($level == 1 && ($_SESSION['loggedin'])) {
+      # Redirect to home page if logged in and level is 1.
+      header('Location:/phpmotors/');
+    } elseif (!$_SESSION['loggedin']) {
+      # Redirect to home page if not logged in.
+      header('Location:/phpmotors/');
+    }
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

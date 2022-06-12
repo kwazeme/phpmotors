@@ -35,18 +35,9 @@ exit; */
 
 // Get navBar
 $navigation = navBar($classifications);
-// // Navigation bar using the $classifications array.
-// $navList = '<ul>';
-// $navList .= "<li><a href='/phpmotors/index.php' title= 'View the PHP Motors home page'>Home</a></li>";
-// foreach ($classifications as $classification) {
-//     $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-// }
-// $navList .= '</ul>';
-// $login = "<a href='/accounts/index.php?action=".urlencode($action['login'])."' title='Login to your account'>My Account</a>";
-/* // Test Navigation List
-echo $navList;
-exit; */ 
 
+// Get Vehicles and Classification Management Panel link
+$manLink = manageLink();
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -130,9 +121,9 @@ switch ($action) {
         $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 
         // validate $clientPassword
-        $checkPassword = checkPassword($clientPassword);
+        $passwordCheck = checkPassword($clientPassword);
         // Check for missing data
-        if (empty($clientEmail) || empty($checkPassword)) {
+        if (empty($clientEmail) || empty($passwordCheck)) {
             # code...
             $message = "<p class='error'>&#9888;&#65039; <br>Please provide information for all required form fields.</p>";
             include '../view/login.php';
@@ -142,8 +133,9 @@ switch ($action) {
         // Query the client data based on email address
         $clientData = getClient($clientEmail);
         // Compare the password just submitted against the hashed password for matching
-        $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
+        $hashCheck = password_verify($passwordCheck, $clientData['clientPassword']);
         // If hashes don't match create error and return to the login view
+
         if (!$hashCheck) {
             # code...
             $message = "<p class='error'>&#9888;&#65039; <br>Please check your password and try again.</p>";
@@ -156,16 +148,36 @@ switch ($action) {
         // the array_pop functino removes the last element from an array
         array_pop($clientData);
         // Store the array in the session
-        $_SESSION['clientData'] = $clientData;
+        $_SESSION['clientData'] = $clientData;      
         // Send Logged in user to the admin view
-        // include '../view/admin.php';
-        echo "include '../view/admin.php'";
+        // $fname = $_SESSION['clientData']['clientFirstname'];
+        // $lname = $_SESSION['clientData']['clientLastname'];
+        // $email = $_SESSION['clientData']['clientEmail'];
+       
+        include '../view/admin.php';
+        // echo "include '../view/admin.php'";
         exit;
         break;
-    default:
+    case 'admin':
         # code...
-        include '../view/home.php';
+        include '../view/admin.php';
         break;
+    case 'logout':
+            # code...
+            session_start();
+            unset($_SESSION['loggedin']);
+            if (ini_get("session.use_cookies")) {
+                # Get cookie variables and destroy session to log out user in all views.
+                $params = session_get_cookie_params();
+                setcookie('firstname', $clientFirstname, strtotime('-1 year'), '/');
+            }
+            session_destroy();
+            include '../view/home.php';
+            break;
+    // default:
+    //     # code...
+    //     include '../view/home.php';
+    //     break;
 }
 
 

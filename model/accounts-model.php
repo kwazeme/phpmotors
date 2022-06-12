@@ -1,8 +1,8 @@
 <?php
-/*
+/*****************************
  *  Accounts Model
  *
- */
+ ***************************/
 
 
 //  Register a new client
@@ -52,7 +52,7 @@ function checkExistingEmail($clientEmail) {
 
 // Get client data based on an email address
 function getClient($clientEmail) {
-    $db = phpmotorsConnect;
+    $db = phpmotorsConnect();
     $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword
             FROM clients
             WHERE clientEmail = :clientEmail';
