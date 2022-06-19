@@ -167,7 +167,8 @@ input {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="textarea"] {
   width: 100%;
   padding: 0 0 0 10px;
   margin: 0;

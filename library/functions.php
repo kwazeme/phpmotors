@@ -51,12 +51,49 @@ function navBar($classifications)
 // Function to call for management panel to be loaded
 function manageLink()
 {   
-    $link = "<a href='/phpmotors/vehicles/index.php?action=manage' title='Manage Vehicles & Classifications'>Management Panel</a>";
+    $link = "<a href='/phpmotors/vehicles/' title='Manage Vehicles & Classifications'>Management Panel</a>";
     $linkDiv = '<div id="create-account-wrap">';
     $linkDiv .= 'Want to Manage Vehicle? <br>';
     $linkDiv .= "$link";
     $linkDiv .= '</div>';
     return $linkDiv;
 }
+
+// // Build the classifications select list 
+// function buildClassificationList($classifications){ 
+//     $classificationList = '<select name="classificationId" id="classificationList">'; 
+//     $classificationList .= "<option>Choose a Classification</option>"; 
+//     foreach ($classifications as $classification) { 
+//      $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>"; 
+//     } 
+//     $classificationList .= '</select>'; 
+//     return $classificationList; 
+//    }
+
+
+function buildClassificationList($classifications) {
+    $classificationList = '<select id="classificationList" name="classificationId">';
+    $classificationList .= '<option value="" disabled selected hidden>Choose Car Classification</option>';
+    foreach ($classifications as $classItem) {
+        # code...
+        $classificationList .="<option value='$classItem[classificationId]'";
+        if (isset($classificationId)) {
+        # code...
+        if ($classItem['classificationId'] === $classificationId) {
+            # code...
+            $classificationList .= ' selected ';
+        }
+        }
+        $classificationList .= ">$classItem[classificationName]</option>";
+    }
+    $classificationList .= '</select>';
+
+    return $classificationList;
+}
+
+
+
+
+
 
 ?>

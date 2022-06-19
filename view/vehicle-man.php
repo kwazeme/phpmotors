@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+<?php 
+if ($_SESSION['clientData']['clientLevel'] < 2) {
+    # Redirect to home page
+    header('Location: /phpmotors/');
+    exit;
+}
+
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+}
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,9 +48,26 @@
     <input type="submit" class="addVehicle" value="Add Vehicle">
     <input type="hidden" name="action" value="add-Vehicle">
     </form>
+    <?php
+    if (isset($message)) {
+        # code...
+        echo $message;
+    }
+    if (isset($classificationList)) {
+        # code...
+        echo '<h2>Vehicles By Classification</h2>';
+        echo '<p>Choose a classification to see those vehicles</p>';
+        echo $classificationList;
+    }
+    ?>
+    <noscript>
+        <p><strong>JavaScript Must be Enabled to Use this Page.</strong></p>
+    </noscript>
+    <table id="inventoryDisplay"></table>
     </div>
 </main>
 <!-- Require page footer -->
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
+<script src="../js/inventory.js"></script>
 </body>
-</html>
+</html><?php  unset($_SESSION['message']);?>
