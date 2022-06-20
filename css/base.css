@@ -150,9 +150,9 @@ main.formpage {
 }
 
 #login-form {
-  padding: 0 50px;
+  padding: 50px;
 }
-#register-form{
+#register-form {
   padding: 50px;
 }
 
@@ -282,6 +282,14 @@ p.success {
   text-align: center;
   font-weight: bold;
   border: 1px solid var(--darker-blue);
+}
+
+hr {
+  height: 6px;
+}
+p#info {
+  font-size: 14px;
+  padding: 5px;
 }
 /* p.greeting {
   color: var(--darker-blue);

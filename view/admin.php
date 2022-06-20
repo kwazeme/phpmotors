@@ -42,7 +42,16 @@ if (!isset($_SESSION['loggedin'])) {
 <main class="content clearfix formpage">
 
     <!-- MAIN CONTENT GOES HERE -->
-    <h1><?php echo "<span>$fname $lname</span>";?></h1>   
+    <h1><?php echo "<span>$fname $lname</span>";?></h1>  
+    <?php 
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+    }
+    if (isset($message)) {
+    # code...
+    echo "$message";
+      }
+      ?>  
     <div id="login-form-wrap">
         <h4>You are logged in. </h4>
         <ul>
@@ -50,10 +59,15 @@ if (!isset($_SESSION['loggedin'])) {
             <li>Last name: <?php echo $lname;?></li>
             <li>Email: <?php echo $email;?></li>
         </ul>
+        <div id="create-account-wrap">
         <?php if ($level > 1) {
             # code...
             echo $manLink;
+            # code...
+            echo "<hr>";
+            echo $admLink;
         } ?>
+        </div>
     </div>
 
 </main>

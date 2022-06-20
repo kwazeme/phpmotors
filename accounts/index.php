@@ -39,6 +39,9 @@ $navigation = navBar($classifications);
 // Get Vehicles and Classification Management Panel link
 $manLink = manageLink();
 
+// Get User Information update link
+$admLink = adminLink();
+
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
@@ -138,7 +141,7 @@ switch ($action) {
 
         if (!$hashCheck) {
             # code...
-            $message = "<p class='error'>&#9888;&#65039; <br>Please check your password and try again.</p>";
+            $message = "<p class='error'>&#9888;&#65039; <br>Please check your email or password and try again.</p>";
             include '../view/login.php';
             exit;
         }
@@ -174,6 +177,94 @@ switch ($action) {
             session_destroy();
             include '../view/home.php';
             break;
+
+    case 'updateUser':
+        # code...
+        include '../view/client-update.php';
+        break;
+    case 'updateAccount':
+        # code...
+        $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        // Filter and store primary key passed by the form
+        $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
+        // Check if Email is different from session email
+        if (($_SESSION['clientData']['clientEmail'] != $clientEmail)) {
+            // validate and return valid email address
+            $clientEmail = checkEmail($clientEmail);
+            // Check for existing email
+            $existingEmail = checkExistingEmail($clientEmail);
+            if ($existingEmail) {
+                # code...
+                $message = "<p class='error'>&#9888;&#65039; <br>The email address already exists. Enter a different email address?</p>";
+                include '../view/client-update.php';
+                exit;
+            }
+            // Check for missing data
+            if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)) {
+                # code...
+                $message = "<p class='error'>&#9888;&#65039; <br>Please provide information for all required fields to Update information.</p>";
+                include '../view/client-update.php';
+                exit;
+            }
+            // Send the data to the model for Update
+            $updateOutcome = updateClient($clientFirstname,$clientLastname,$clientEmail,$clientId);
+            // Check and report the result
+            if ($updateOutcome === 1) {
+                // Query the client data based on email address
+                $clientData = getClient($clientEmail);
+                // Store the array in the session
+                $_SESSION['clientData'] = $clientData; 
+                // Success Message
+                $_SESSION['message'] = "<p class='success'>&#10003;<br>  $clientFirstname User Information was Updated<br> Please use your updated email and password when logging in.</p>";
+                header('Location: /phpmotors/accounts/?action=admin');
+                exit;
+            } else {
+                # code...
+                $message = "<p class='error'>&#x27F3; <br>Sorry $clientFirstname, <br> but the update failed. Please try again</p>";
+                include '../view/client-update.php';
+                exit;
+            }
+        } else {
+                $message = "<p class='error'>&#9888;&#65039; <br>Please update your Email and try again.</p>";
+                include '../view/client-update.php';
+                exit;
+        }
+        break;
+    case 'updatePass':
+         // Filter and collect User data
+         $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        // Filter and store primary key passed by the form
+        $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
+        // validate $clientPassword meets strong password requirements
+        $checkPassword = checkPassword($clientPassword);
+        // Check pattern not matched
+        if (empty($checkPassword)) {
+            # code...
+            $message = "<p class='error'>&#9888;&#65039; <br>Please check that your password matches the strength required and try again.</p>";
+            include '../view/client-update.php';
+            exit;
+        }
+        // Hash the new checked password
+        $hashedPassword = password_hash($checkPassword, PASSWORD_DEFAULT);
+         // Send the data to the model for Update
+         $updateOutcome = updatePassword($hashedPassword,$clientId);
+         // Check and report the result
+         if ($updateOutcome === 1) {
+             // Success Message
+             $_SESSION['message'] = "<p class='success'>&#10003;<br>  $clientFirstname your password has been update<br> Please use your email and updated password when logging in.</p>";
+             header('Location: /phpmotors/accounts/?action=admin');
+             exit;
+         } else {
+             # code...
+             $message = "<p class='error'>&#x27F3; <br>Sorry $clientFirstname, <br> but the password update failed. Please try again</p>";
+             include '../view/client-update.php';
+             exit;
+         }
+        break;    
+    
+        
     // default:
     //     # code...
     //     include '../view/home.php';

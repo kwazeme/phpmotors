@@ -52,11 +52,21 @@ function navBar($classifications)
 function manageLink()
 {   
     $link = "<a href='/phpmotors/vehicles/' title='Manage Vehicles & Classifications'>Management Panel</a>";
-    $linkDiv = '<div id="create-account-wrap">';
-    $linkDiv .= 'Want to Manage Vehicle? <br>';
+    $linkDiv = '<div>';
+    $linkDiv .= '<h2>Vehicles Management </h2><p>Use this link to Update Inventory</p>';
     $linkDiv .= "$link";
     $linkDiv .= '</div>';
     return $linkDiv;
+}
+
+// function to call admin panel link to load
+function adminLink()
+{   
+    $link = "<a href='/phpmotors/accounts/index.php?action=updateUser' title='update account information'>update account info</a>";
+    $adminDiv = '<h2>User Management </h2><p>Use this link to Update User Information</p>';
+    $adminDiv .= "$link";
+    $adminDiv .= '</div>';
+    return $adminDiv;
 }
 
 // // Build the classifications select list 
