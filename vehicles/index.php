@@ -228,6 +228,22 @@ switch ($action) {
             header('location: /phpmotors/vehicles/');
             exit;
         break;
+    case 'classification':
+        # code...
+        $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $vehicles = getVehiclesByClassification($classificationName);
+        // Check if vehicles arrays were returned or not
+        if (!count($vehicles)) {
+            $message = "<p class='error'>&#9888;&#65039; <br>Sorry. No $classificationName vehicles could be found.</p>";
+        } else {
+            # code...
+            $vehicleDisplay = buildVehiclesDisplay($vehicles);
+        }
+        // echo $vehicleDisplay;
+        // exit;
+        include '../view/classification.php';
+        break;
+
 
 
     default:

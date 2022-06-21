@@ -1,4 +1,4 @@
-@media only screen and (min-width: 35rem) {
+@media screen and (max-width: 600px) {
     html { 
         background: url(small_check.webp) no-repeat center center fixed; 
         -webkit-background-size: cover;
@@ -6,17 +6,40 @@
         -o-background-size: cover;
         background-size: cover;
       }
-nav ul {margin-left: 2%;}
-nav ul li {width: auto;}
-nav ul li:first-child a {border-left: 1px solid var(--black3a);}
-nav ul li:last-child a {border-right: 1px solid var(--black3a);}
-nav ul li a {padding: .5rem 1rem;}
+  nav ul {margin-left: 2%;}
+  nav ul li {width: auto;}
+  nav ul li:first-child a {border-left: 1px solid var(--black3a);}
+  nav ul li:last-child a {border-right: 1px solid var(--black3a);}
+  nav ul li a {padding: .5rem 1rem;}
 
-section.ftop {
-  display: flex;
-  flex-direction: row;
-}
+  section.ftop {
+    display: flex;
+    flex-direction: row;
+  }
 
+  /* For vehicle display in classification view */
+  ul#inv-display {
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+
+  ul#inv-display h2{
+    font-size: 1rem;
+  }
+
+  ul#inv-display li {
+    max-width: 200px;
+    flex: 1 0 auto;
+    text-align: center;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+      
+  ul#inv-display div {
+    width: 100%;
+  }
 
 
 

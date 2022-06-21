@@ -1,4 +1,4 @@
-@media only screen and (min-width: 64rem) {
+@media screen and (max-width: 1024px) {
     html { 
         background: url(small_check.webp) no-repeat center center fixed; 
         -webkit-background-size: cover;
@@ -6,17 +6,41 @@
         -o-background-size: cover;
         background-size: cover;
       }
-header, nav, main, footer {
-    max-width: 64rem;
-    margin:auto;
-}
-/* Upgrades CSS */
-section.ftop {
+    header, nav, main, footer {
+        max-width: 64rem;
+        margin:auto;
+    }
+    /* Upgrades CSS */
+    section.ftop {
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+    }
+
+/* For vehicle display in classification view
+#inv-display {
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+  
+  #inv-display h2{
+    font-size: 1rem;
+  }
+  
+  #inv-display li {
+    max-width: 200px;
+    flex: 1 0 auto;
+    text-align: center;
+    height: 250px;
     display: flex;
     flex-direction: row;
-    margin: 0 auto;
-}
-
+    justify-content: space-between;
+  }
+      
+  #inv-display div {
+    width: 100%;
+  }
+   */
 
 
 
