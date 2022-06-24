@@ -1,315 +1,394 @@
-/* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.  */
-html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+  /* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.  */
+  html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
-/*----------- apply a natural box layout model to all elements --------------*/
-* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-/* *, *:before, *:after { box-sizing: inherit;} */
+  /* ----------- apply a natural box layout model to all elements --------------*/
+  * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; } 
+  *, *:before, *:after { box-sizing: inherit;}
 
 :root {
-    --grey-one: #bababa;
-    --grey-two: #8d8d8d;
-    --light-blue: #a6cbeb;
-    --darker-blue: #1A4A75;
-    --dark-blue: #4c96d7;
-    --black3a: #3a3a3a;
-    --whiteff: #ffffff;
-    --crimson: #cc1e2b;
+      --grey-one: #bababa;
+      --grey-two: #8d8d8d;
+      --light-blue: #a6cbeb;
+      --darker-blue: #1A4A75;
+      --dark-blue: #4c96d7;
+      --black3a: #3a3a3a;
+      --whiteff: #ffffff;
+      --crimson: #cc1e2b;
 
-    /* Fonts used */
-    --alegraya-font-family: 'Alegreya', serif;
-}
+      /* Fonts used */
+      --alegraya-font-family: 'Alegreya', serif;
+  }
 
-/*----------- BODY --------------*/
-body {
-    font-size: 16px;
-    font-family: var(--alegraya-font-family);
-    background-color: var(--whiteff);
-    max-width: 960px;
-    margin: auto;
-    border: 4px solid var(--dark-blue);
-    border-radius: 10px;
-}
+  /*----------- BODY --------------*/
+  body {
+      font-size: 16px;
+      font-family: var(--alegraya-font-family);
+      background-color: var(--whiteff);
+      max-width: 960px;
+      margin: auto;
+      border: 4px solid var(--dark-blue);
+      border-radius: 10px;
+  }
 
 
-/*----------- HEADER --------------*/
-header {
-    padding: .5rem 2%;
-    background-color: var(--whiteff);
-}
-header h1 {margin: 0;}
-header h2 {margin: 0; font-weight: normal;}
+  /*----------- HEADER --------------*/
+  header {
+      padding: .5rem 2%;
+      background-color: var(--whiteff);
+  }
+  header h1 {margin: 0;}
+  header h2 {margin: 0; font-weight: normal;}
 
-/*----------- NAVIGATION --------------*/
-nav {
-    background-color: var(--black3a);
-}
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-nav ul li {
-    float: left;
-    width: 25%;
-}
-nav ul li a {
-    display: block;
-    background-color: var(--black3a);
-    color: var(--whiteff);
-    border-left: 1px solid var(--black3a);
-    padding: .5rem 0;
-    text-decoration: none;
-    font-size: .9rem;
-    text-align: center;
-}
-nav ul li:first-child a {border-left: none;}
+  /*----------- NAVIGATION --------------*/
+  nav {
+      background-color: var(--black3a);
+  }
+  nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+  }
+  nav ul li {
+      float: left;
+      width: 25%;
+  }
+  nav ul li a {
+      display: block;
+      background-color: var(--black3a);
+      color: var(--whiteff);
+      border-left: 1px solid var(--black3a);
+      padding: .5rem 0;
+      text-decoration: none;
+      font-size: .9rem;
+      text-align: center;
+  }
+  nav ul li:first-child a {border-left: none;}
 
-nav ul li a:hover {
-    background-color: var(--darker-blue);
-    color: var(--whiteff);
-}
-nav ul li.active a {
-    background-color: var(--darker-blue);
-    color: var(--whiteff);
-}
-/*----------- MAIN --------------*/
-main {
-    padding: 0 2%;
-    min-height: 10rem;
-    background-color: var(--whiteff);
-}
+  nav ul li a:hover {
+      background-color: var(--darker-blue);
+      color: var(--whiteff);
+  }
+  nav ul li.active a {
+      background-color: var(--darker-blue);
+      color: var(--whiteff);
+  }
+  /*----------- MAIN --------------*/
+  main {
+      padding: 0 2%;
+      min-height: 10rem;
+      background-color: var(--whiteff);
+  }
 
-header figure.logo {
-    float: left;    
-}
+  header figure.logo {
+      float: left;    
+  }
 
-header a {
-    color: var(--black3a);
-    padding: .9rem 0;
-    text-decoration: none;
-    font-size: 1.2rem;
-    float: right;
+  header a {
+      color: var(--black3a);
+      padding: .9rem 0;
+      text-decoration: none;
+      font-size: 1.2rem;
+      float: right;
+      
+  }
+  section.ftop {
+      display: flex;
+      flex-direction: column;
+  }
+
+  /*----------- FOOTER --------------*/
+  footer {
+      background-color: var(--grey-one);
+      padding: .5rem 2%;
+      text-align: center;
+  }
+
+  aside {
+      color: var(--darker-blue);
+  }
+  .upgrades { margin: 0;}
+  .container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -10px;
+    }
     
-}
-section.ftop {
-    display: flex;
-    flex-direction: column;
-}
+    .box {
+      flex: 0 0 calc(50% - 25px);
+      background: var(--dark-blue);
+      height: 80px;
+      margin: 0 0 25px 25px;
+      text-align: center;
+    }
+    .box img {
+        width: 50px;
+    }
 
-/*----------- FOOTER --------------*/
-footer {
+    .box a {
+        color: black;}
+
+  /*----- Clearfix: Force an Element not to collapse -----*/
+  .clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Login page CSS */
+
+  main.formpage {
+    text-align: center;
+  }
+
+  #login-form-wrap, #register-form-wrap {
+    background-color: var(--whiteff);
+    max-width: 300px;
+    margin: 30px auto;
+    text-align: left;
+    padding: 20px 0 0 0;
+    border-radius: 4px;
+    box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  #login-form {
+    padding: 50px;
+  }
+  #register-form {
+    padding: 50px;
+  }
+
+  input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 4px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="textarea"] {
+    width: 100%;
+    padding: 0 0 0 10px;
+    margin: 0;
+    color: var(--grey-two);
+    border: 1px solid var(--grey-two);
+    font-style: normal;
+    font-size: 16px;
+    -webkit-appearance: none;
+      -moz-appearance: none;
+            appearance: none;
+    position: relative;
+    display: inline-block;
+    background: none;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus {
+    border-color: var(--darker-blue);
+  }
+  input[type="text"]:focus:invalid,
+  input[type="email"]:focus:invalid {
+    color:var(--crimson);
+    border-color: var(--crimson);
+    background-image: url(invalid.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+  }
+  input[type="text"]:valid ~ .validation,
+  input[type="email"]:valid ~ .validation {
+    display: block;
+    border-color: #0C0;
+  }
+  input[type="text"]:valid ~ .validation span,
+  input[type="email"]:valid ~ .validation span {
+    background: #0C0;
+    position: absolute;
+    border-radius: 6px;
+  }
+  input[type="text"]:valid ~ .validation span:first-child,
+  input[type="email"]:valid ~ .validation span:first-child {
+    top: 30px;
+    left: 14px;
+    width: 20px;
+    height: 3px;
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+  input[type="text"]:valid ~ .validation span:last-child,
+  input[type="email"]:valid ~ .validation span:last-child {
+    top: 35px;
+    left: 8px;
+    width: 11px;
+    height: 3px;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+
+  .validation {
+    display: none;
+    position: absolute;
+    content: " ";
+    height: 60px;
+    width: 30px;
+    right: 15px;
+    top: 0px;
+  }
+
+  input[type="submit"] {
+    border: none;
+    display: block;
+    background-color: var(--darker-blue);
+    color: var(--whiteff);
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    font-size: 18px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+  }
+  input[type="submit"]:hover {
+    background-color: var(--darker-blue);
+    font-size: x-large;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+
+  #create-account-wrap {
     background-color: var(--grey-one);
-    padding: .5rem 2%;
+    color: var(--whiteff);
     text-align: center;
-}
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 0 0 4px 4px;
+  }
+  p.error {
+    padding: 10px;
+    color: var(--crimson);
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid var(--crimson);
+  }
 
-aside {
+  p.success {
+    padding: 10px;
     color: var(--darker-blue);
-}
-.upgrades { margin: 0;}
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -10px;
-  }
-  
-  .box {
-    flex: 0 0 calc(50% - 25px);
-    background: var(--dark-blue);
-    height: 80px;
-    margin: 0 0 25px 25px;
     text-align: center;
+    font-weight: bold;
+    border: 1px solid var(--darker-blue);
   }
-  .box img {
-      width: 50px;
+
+  p#info {
+    font-size: 14px;
+    padding: 5px;
   }
-
-  .box a {
-      color: black;}
-
-/*----- Clearfix: Force an Element not to collapse -----*/
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Login page CSS */
-
-main.formpage {
-  text-align: center;
-}
-
-#login-form-wrap, #register-form-wrap {
-  background-color: var(--whiteff);
-  max-width: 300px;
-  margin: 30px auto;
-  text-align: left;
-  padding: 20px 0 0 0;
-  border-radius: 4px;
-  box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
-}
-
-#login-form {
-  padding: 50px;
-}
-#register-form {
-  padding: 50px;
-}
-
-input {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  outline: none;
-  height: 60px;
-  line-height: 60px;
-  border-radius: 4px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="textarea"] {
-  width: 100%;
-  padding: 0 0 0 10px;
-  margin: 0;
-  color: var(--grey-two);
-  border: 1px solid var(--grey-two);
-  font-style: normal;
-  font-size: 16px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  position: relative;
-  display: inline-block;
-  background: none;
-}
-input[type="text"]:focus,
-input[type="email"]:focus {
-  border-color: var(--darker-blue);
-}
-input[type="text"]:focus:invalid,
-input[type="email"]:focus:invalid {
-  color:var(--crimson);
-  border-color: var(--crimson);
-  background-image: url(invalid.png);
-  background-position: right top;
-  background-repeat: no-repeat;
-}
-input[type="text"]:valid ~ .validation,
-input[type="email"]:valid ~ .validation {
-  display: block;
-  border-color: #0C0;
-}
-input[type="text"]:valid ~ .validation span,
-input[type="email"]:valid ~ .validation span {
-  background: #0C0;
-  position: absolute;
-  border-radius: 6px;
-}
-input[type="text"]:valid ~ .validation span:first-child,
-input[type="email"]:valid ~ .validation span:first-child {
-  top: 30px;
-  left: 14px;
-  width: 20px;
-  height: 3px;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-input[type="text"]:valid ~ .validation span:last-child,
-input[type="email"]:valid ~ .validation span:last-child {
-  top: 35px;
-  left: 8px;
-  width: 11px;
-  height: 3px;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.validation {
-  display: none;
-  position: absolute;
-  content: " ";
-  height: 60px;
-  width: 30px;
-  right: 15px;
-  top: 0px;
-}
-
-input[type="submit"] {
-  border: none;
-  display: block;
-  background-color: var(--darker-blue);
-  color: var(--whiteff);
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  font-size: 18px;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-}
-input[type="submit"]:hover {
-  background-color: var(--darker-blue);
-  font-size: x-large;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-}
-
-#create-account-wrap {
-  background-color: var(--grey-one);
-  color: var(--whiteff);
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  width: 100%;
-  padding: 10px 0;
-  border-radius: 0 0 4px 4px;
-}
-p.error {
-  padding: 10px;
-  color: var(--crimson);
-  text-align: center;
-  font-weight: bold;
-  border: 1px solid var(--crimson);
-}
-
-p.success {
-  padding: 10px;
-  color: var(--darker-blue);
-  text-align: center;
-  font-weight: bold;
-  border: 1px solid var(--darker-blue);
-}
-
-p#info {
-  font-size: 14px;
-  padding: 5px;
-}
-/* p.greeting {
-  color: var(--darker-blue);
-  font-weight: bold;
-  float: right;
-} */
-
-/* DISPLAY VEHICLES BY CLASSIFICATION */
+  /* DISPLAY VEHICLES BY CLASSIFICATION */
 ul#inv-display{
-  margin: 0;
-  padding: 0;
-  display: flex;
-  /* flex-direction: column; */
- }
- 
- ul#inv-display li{
-  margin-bottom: .5em;
-  border: 2px #ccc solid;
-  list-style-type: none;
-  flex: 1 1 auto;
- }
- 
- ul#inv-display li img {
-     max-width: 100%;
- }
+ margin: 0;
+ padding: 0;
+ display: flex;
+ flex-direction: column;
+ width: 100%;
+}
+
+ul#inv-display li{
+ margin-bottom: .5em;
+ border: 1px var(--dark-blue) solid;
+ list-style-type: none;
+ flex: 1 1 auto;
+}
+
+ul#inv-display li img {
+    max-width: 100%;
+}
+
+  .car-details {
+    max-width: 100%;
+  }
+
+  
+.car-left {
+  display: inline-block;
+  padding-right: 4%;
+  vertical-align: top;
+  width: 46%;
+}
+
+.car-right {
+  display: inline-block;
+  vertical-align: top;
+  width: 49%;
+}
+
+.car-bottom{border-top:1px solid var(--grey-two); position:relative; padding-top:20px;}
+
+@media (max-width:650px){
+  .car-left, .car-right, .car-bottom{
+    width:100%;}
+  .car-left{padding-right:0;}
+  .car-info{display:inline-block; width:60%; vertical-align:top;}
+   .car-image{display:inline-block; width:39%; vertical-align:top;}
+
+}
+
+@media (max-width:512px){
+  .car-info, .car-image{width:100%;}
+
+}
+
+.car-manufacturer {
+  color:var(--darker-blue);
+  font-size: 70px;
+  font-weight: bold;
+  line-height: 1;
+  margin: -2px;
+}
+
+.car-title {
+  font-size: 28px;
+  color: var(--darker-blue);
+}
+
+.car-checkout {
+  color:var(--black3a);
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.car-image {
+  padding: 10px 10px 0 10px;
+}
+
+.car-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 5px;
+  height: 295px;
+  border: solid 1px var(--darker-blue);
+  border-radius: 5px;
+}
+
+.car-description {line-height:1.5;}
+
+.car-available {
+  margin-top: 25px;
+}
+
+.car-rating{
+  margin-top:25px;
+}
+
+.car-quantity-label{text-transform:uppercase;}
+.car-quantity *{display:inline-block;}
+.car-quantity-add,.car-quantity-subtract{font-size: 25px;}
+
+#car-quantity-input{border: none; width:2.5em; text-align: center;}
+

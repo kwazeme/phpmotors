@@ -243,7 +243,22 @@ switch ($action) {
         // exit;
         include '../view/classification.php';
         break;
+    case 'viewVehicle':
+        // echo "vehicle.php";
+        $invId = trim(filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT));
+        $vehicleDetail = getVehicleDetail($invId);
+        // var_dump($vehicleDetail);
+        // exit;
+        // Check if vehicles arrays were returned or not
+        if (empty($vehicleDetail)) {
+            $message = "<p class='error'>&#9888;&#65039; <br>Sorry. No such vehicles could be found.</p>";
+        } else {
+            # code...
+            $vehicleDetailDisplay = buildVehicleDetailDisplay($vehicleDetail);
+        }
+        include '../view/vehicle-detail.php';
 
+        break;
 
 
     default:

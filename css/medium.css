@@ -1,4 +1,5 @@
-@media screen and (max-width: 600px) {
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
     html { 
         background: url(small_check.webp) no-repeat center center fixed; 
         -webkit-background-size: cover;
@@ -28,7 +29,7 @@
   }
 
   ul#inv-display li {
-    max-width: 200px;
+    width: 200px;
     flex: 1 0 auto;
     text-align: center;
     height: 250px;

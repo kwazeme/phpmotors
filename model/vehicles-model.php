@@ -153,15 +153,58 @@ function buildVehiclesDisplay($vehicles){
   $dv = '<ul id="inv-display">';
   foreach ($vehicles as $vehicle) {
    $dv .= '<li>';
-   $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+   $dv .= "<a href='/phpmotors/vehicles/?action=viewVehicle&invId=".urlencode($vehicle['invId'])."' title='View Details for $vehicle[invModel]'><img src='$vehicle[invThumbnail]' alt='photo of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a>";
    $dv .= '<hr>';
-   $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
-   $dv .= "<span>$vehicle[invPrice]</span>";
+   $dv .= "<a href='/phpmotors/vehicles/?action=viewVehicle&invId=".urlencode($vehicle['invId'])."' title='View Details for $vehicle[invModel]'><h2>$vehicle[invMake] $vehicle[invModel]</h2></a>";
+   $dv .= "<span>Price: $$vehicle[invPrice]</span>";
    $dv .= '</li>';
   }
   $dv .= '</ul>';
   return $dv;
  }
+
+ // Get vehicles details based on invId
+function getVehicleDetail($invId) {
+  $db = phpmotorsConnect();
+  $sql = 'SELECT * FROM inventory WHERE invId = :invId';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+  $stmt->execute();
+  $vehicleDetail = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt->closeCursor();
+  return $vehicleDetail;
+
+}
+
+// Build html display for vehicle details
+function buildVehicleDetailDisplay($vehicleDetail) {
+  $dv = '<div class="car-details">';
+  $dv .= '<div class="car-left">';
+  $dv .= '<div class="car-info">';
+  foreach ($vehicleDetail as $detail) {
+    $dv .= "<div class='car-manufacturer'>$detail[invMake]'s";
+    $dv .= '</div>';
+    $dv .= "<div class='car-title'>$detail[invModel]</div>";
+    $dv .= '<div class="car-price"></div></div>';
+    $dv .= "<div class='car-image'><img src='$detail[invImage]' alt='$detail[invModel] car photo'/></div></div>";
+    $dv .= '<div class="car-right">';
+    $dv .= "<div class='car-description'>$detail[invDescription]</div>";
+    $dv .= "<div class='car-available'><strong>In stock:</strong> <span class='car-extended'> $detail[invStock] units - <strong>Color:</strong> $detail[invColor]</span></div>";
+    $dv .= '<div class="car-rating"><strong>Rating:</strong> &#11088;&#11088;&#11088;&#11088;&#11088;&#11088;<div class="car-rating-details">(3.1 - <span class="rating-count">12803</span> reviews)</div></div>';
+    $dv .= '<div class="car-quantity">';
+    $dv .= '<label for="car-quantity-input" class="car-quantity-label">Order Now: </label>';
+    $dv .= '<div class="car-quantity-subtract"></div>';
+    $dv .= '<div><input type="text" id="car-quantity-input" placeholder="QTY"/></div>';
+    $dv .= '<div class="car-quantity-add">';
+    $dv .= "</div></div><img src='$detail[invThumbnail]' alt='$detail[invModel] vehicle'></div>";
+    $dv .= "<div class='car-bottom'>";
+    $dv .= '<div class="car-checkout">Car Price';
+    $dv .= "<div class='car-checkout-total'>$ $detail[invPrice].00</div></div>";
+    $dv .= '<div class="car-checkout-actions"><a class="add-to-cart" href="#" onclick="AddToCart(event);">Add to Cart</a>';
+  }
+  $dv .= '</div></div></div>';
+  return $dv;
+}
 
 
 ?>

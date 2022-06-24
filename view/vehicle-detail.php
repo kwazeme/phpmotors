@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/phpmotors/css/base.css">
     <link rel="stylesheet" href="/phpmotors/css/medium.css">
     <link rel="stylesheet" href="/phpmotors/css/large.css">
-    <title><?php echo $classificationName; ?> vehicles | PHP Motors, Inc.</title>
+    <title><?php echo "$invMake $invModel"; ?> vehicles | PHP Motors, Inc.</title>
 </head>
 <body>
     <!-- Require page header -->
@@ -25,17 +25,15 @@
     ?>
 </nav>
 
-<main class="formpage content">
+<main class="content formpage">
     <!-- MAIN CONTENT GOES HERE -->
-<h1><?php echo $classificationName; ?> vehicles</h1>
+<h1>VEHICLE INFORMATION</h1>
 <?php if (isset($message)) {
     echo $message;
 } ?>
-<?php if (isset($vehicleDisplay)) {
-    echo $vehicleDisplay;
+<?php if (isset($vehicleDetailDisplay)) {
+    echo $vehicleDetailDisplay;
 } ?>
-
-
 </main>
 <!-- Require page footer -->
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
