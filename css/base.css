@@ -150,12 +150,28 @@
     box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
   }
 
+  #upload-form-wrap {
+    background-color: var(--whiteff);
+    max-width: 400px;
+    margin: 30px auto;
+    text-align: left;
+    padding: 20px 0 0 0;
+    border-radius: 4px;
+    box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  ul#image-display {
+    list-style: none;
+  }
+
   #login-form {
     padding: 50px;
   }
   #register-form {
     padding: 50px;
   }
+  #upload-form {padding: 40px;}
+  label.pImage {font-weight: bold;}
 
   input {
     display: block;
@@ -166,10 +182,9 @@
     line-height: 60px;
     border-radius: 4px;
   }
-
-  input[type="text"],
+  fieldset{display: flex;}
   input[type="email"],
-  input[type="textarea"] {
+  input[type="textarea"], input[type="file"]{
     width: 100%;
     padding: 0 0 0 10px;
     margin: 0;
@@ -285,10 +300,13 @@
     border: 1px solid var(--darker-blue);
   }
 
-  p#info {
+  p#info, p.info {
     font-size: 14px;
+    font-weight: bolder;
     padding: 5px;
+    text-align: center;
   }
+  h2#uh2 {text-align: center;}
   /* DISPLAY VEHICLES BY CLASSIFICATION */
 ul#inv-display{
  margin: 0;
