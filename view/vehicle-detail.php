@@ -25,15 +25,24 @@
     ?>
 </nav>
 
-<main class="content formpage">
+<main class="conotent formpage">
     <!-- MAIN CONTENT GOES HERE -->
 <h1>VEHICLE INFORMATION</h1>
+<div class="imgDisplay">
 <?php if (isset($message)) {
     echo $message;
 } ?>
+<div class="car-details">
 <?php if (isset($vehicleDetailDisplay)) {
     echo $vehicleDetailDisplay;
 } ?>
+</div>
+<aside class="thumbDiv">
+<?php if (isset($thumbImagesDisplay)) {
+    echo $thumbImagesDisplay;
+} ?>
+</aside>
+</div>
 </main>
 <!-- Require page footer -->
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>

@@ -347,18 +347,26 @@ ul#inv-display li img {
 
 .car-bottom{border-top:1px solid var(--grey-two); position:relative; padding-top:20px;}
 
+img.imgthumb {width: 40%;}
+
 @media (max-width:650px){
   .car-left, .car-right, .car-bottom{
     width:100%;}
   .car-left{padding-right:0;}
   .car-info{display:inline-block; width:60%; vertical-align:top;}
    .car-image{display:inline-block; width:39%; vertical-align:top;}
-
 }
 
 @media (max-width:512px){
-  .car-info, .car-image{width:100%;}
+  .car-info, .car-image{width:100%;} 
+  
+}
 
+@media (min-width:512px){
+  img.imgSelect:hover {
+    transform: translateY(0) scale(2);
+  }  
+  
 }
 
 .car-manufacturer {
@@ -409,4 +417,6 @@ ul#inv-display li img {
 .car-quantity-add,.car-quantity-subtract{font-size: 25px;}
 
 #car-quantity-input{border: none; width:2.5em; text-align: center;}
+
+aside.thumbDiv li { list-style: none;}
 

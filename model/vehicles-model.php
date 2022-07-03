@@ -138,7 +138,12 @@ function deleteVehicle($invId) {
 // Get a list of vehicles based on classification
 function getVehiclesByClassification($classificationName) {
   $db = phpmotorsConnect();
-  $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+  // $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+  $sql = 'SELECT * 
+          FROM inventory 
+          JOIN images ON inventory.invId = images.invId 
+          WHERE inventory.classificationId 
+          IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName) AND images.imgPrimary = 1 AND images.imgPath LIKE "%-tn%"';
   $stmt = $db->prepare($sql);
   $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
   $stmt->execute();
@@ -153,7 +158,7 @@ function buildVehiclesDisplay($vehicles){
   $dv = '<ul id="inv-display">';
   foreach ($vehicles as $vehicle) {
    $dv .= '<li>';
-   $dv .= "<a href='/phpmotors/vehicles/?action=viewVehicle&invId=".urlencode($vehicle['invId'])."' title='View Details for $vehicle[invModel]'><img src='$vehicle[invThumbnail]' alt='photo of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a>";
+   $dv .= "<a href='/phpmotors/vehicles/?action=viewVehicle&invId=".urlencode($vehicle['invId'])."' title='View Details for $vehicle[invModel]'><img src='$vehicle[imgPath]' alt='photo of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a>";
    $dv .= '<hr>';
    $dv .= "<a href='/phpmotors/vehicles/?action=viewVehicle&invId=".urlencode($vehicle['invId'])."' title='View Details for $vehicle[invModel]'><h2>$vehicle[invMake] $vehicle[invModel]</h2></a>";
    $dv .= "<span>Price: $$vehicle[invPrice]</span>";
@@ -166,7 +171,14 @@ function buildVehiclesDisplay($vehicles){
  // Get vehicles details based on invId
 function getVehicleDetail($invId) {
   $db = phpmotorsConnect();
-  $sql = 'SELECT * FROM inventory WHERE invId = :invId';
+  // $sql = 'SELECT * FROM inventory WHERE invId = :invId';
+  $sql = 'SELECT * 
+          FROM inventory 
+          JOIN images 
+          ON inventory.invId = images.invId 
+          WHERE inventory.invId = :invId 
+          AND images.imgPrimary = 1  
+          AND images.imgPath NOT LIKE "%-tn%"';
   $stmt = $db->prepare($sql);
   $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
   $stmt->execute();
@@ -186,7 +198,7 @@ function buildVehicleDetailDisplay($vehicleDetail) {
     $dv .= '</div>';
     $dv .= "<div class='car-title'>$detail[invModel]</div>";
     $dv .= '<div class="car-price"></div></div>';
-    $dv .= "<div class='car-image'><img src='$detail[invImage]' alt='$detail[invModel] car photo'/></div></div>";
+    $dv .= "<div class='car-image'><img src='$detail[imgPath]' alt='$detail[invModel] car photo'/></div></div>";
     $dv .= '<div class="car-right">';
     $dv .= "<div class='car-description'>$detail[invDescription]</div>";
     $dv .= "<div class='car-available'><strong>In stock:</strong> <span class='car-extended'> $detail[invStock] units - <strong>Color:</strong> $detail[invColor]</span></div>";
@@ -196,14 +208,28 @@ function buildVehicleDetailDisplay($vehicleDetail) {
     $dv .= '<div class="car-quantity-subtract"></div>';
     $dv .= '<div><input type="text" id="car-quantity-input" placeholder="QTY"/></div>';
     $dv .= '<div class="car-quantity-add">';
-    $dv .= "</div></div><img src='$detail[invThumbnail]' alt='$detail[invModel] vehicle'></div>";
+    $dv .= "</div></div><img class='imgthumb' src='$detail[imgPath]' alt='$detail[invModel] vehicle'></div>";
     $dv .= "<div class='car-bottom'>";
     $dv .= '<div class="car-checkout">Car Price';
     $dv .= "<div class='car-checkout-total'>$ $detail[invPrice].00</div></div>";
-    $dv .= '<div class="car-checkout-actions"><a class="add-to-cart" href="#" onclick="AddToCart(event);">Add to Cart</a>';
+    $dv .= '<div class="car-checkout-actions"><a class="add-to-cart" href="#" onclick="AddToCart(event);">Order this car</a>';
   }
   $dv .= '</div></div></div>';
   return $dv;
+}
+
+
+// Build HTML for Thumbnail Images
+function buildThumbImagesDisplay($thumbImages) {
+  $tn = "<p>Available Models</p>";
+  $tn .= '<ul>';
+  foreach ($thumbImages as $thumbnail) {
+    # code...
+    $tn .= "<li><img src='$thumbnail[imgPath]' alt='car thumbnail>' class='imgSelect'/></li>";
+  }
+  $tn .= '</ul>';
+  return $tn;
+
 }
 
 // Get information for all vehicles

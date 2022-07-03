@@ -75,3 +75,18 @@ function checkExistingImage($imgName){
     return $imageMatch;
    }
 
+ // Get additional images Thumbnails based on invId
+ function getImageThumbnails($invId) {
+        $db = phpmotorsConnect();
+        $sql = 'SELECT * 
+                FROM images
+                WHERE invId = :invId 
+                AND imgPrimary = 0  
+                AND imgPath LIKE "%-tn%"';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+        $stmt->execute();
+        $addThumbnail = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $addThumbnail;
+      }

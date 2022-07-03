@@ -18,6 +18,9 @@ require_once '../model/main-model.php';
 require_once '../model/vehicles-model.php';
 
 // Get functions.php into scope
+require_once '../model/uploads-model.php';
+
+// Get upload model into scope
 require_once '../library/functions.php';
 
 // Gets the array of classificationList & classifications
@@ -247,7 +250,8 @@ switch ($action) {
         // echo "vehicle.php";
         $invId = trim(filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT));
         $vehicleDetail = getVehicleDetail($invId);
-        // var_dump($vehicleDetail);
+        $thumbImages = getImageThumbnails($invId);
+        // var_dump($thumbImages);
         // exit;
         // Check if vehicles arrays were returned or not
         if (empty($vehicleDetail)) {
@@ -255,6 +259,9 @@ switch ($action) {
         } else {
             # code...
             $vehicleDetailDisplay = buildVehicleDetailDisplay($vehicleDetail);
+            $thumbImagesDisplay = buildThumbImagesDisplay($thumbImages);
+            // var_dump($thumbImagesDisplay);
+            // exit;
         }
         include '../view/vehicle-detail.php';
 

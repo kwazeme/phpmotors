@@ -37,9 +37,9 @@
 </aside>
 <img src="/phpmotors/images/site/own_today150.png" alt="own delorean">
 <picture class="delorean">
-    <source media="(max-width: 200px)" srcset="/phpmotors/images/delorean200.webp">
-    <source media="(max-width: 800px)" srcset="/phpmotors/images/delorean450.webp">
-    <img src="/phpmotors/images/delorean800.webp" alt="delorean-img">
+    <source media="(max-width: 200px)" srcset="/phpmotors/uploads/images/vehicles/delorean.jpg">
+    <source media="(max-width: 800px)" srcset="/phpmotors/uploads/images/vehicles/delorean-tn.jpg">
+    <img src="/phpmotors/uploads/images/vehicles/delorean.jpg" alt="delorean-img">
 </picture>
 <section class="ftop">
     <div class="reviews">
