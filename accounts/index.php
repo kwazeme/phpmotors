@@ -20,6 +20,8 @@ require_once '../model/main-model.php';
 
 // Get the sccounts model
 require_once '../model/accounts-model.php';
+// Get the reviews model
+require_once '../model/reviews-model.php';
 
 // Get the functions library
 require_once '../library/functions.php';
@@ -153,9 +155,12 @@ switch ($action) {
         // Store the array in the session
         $_SESSION['clientData'] = $clientData;      
         // Send Logged in user to the admin view
-        // $fname = $_SESSION['clientData']['clientFirstname'];
-        // $lname = $_SESSION['clientData']['clientLastname'];
-        // $email = $_SESSION['clientData']['clientEmail'];
+        // Get the logged in Client Reviews
+        $clientId = $_SESSION['clientData']['clientId'];
+        // Get Reviews by clientId
+        $clientReviews = getReviewsByclientId($clientId);
+        // Build client review HTML
+        $reviewList = buildClientReviewList($clientReviews);
        
         include '../view/admin.php';
         // echo "include '../view/admin.php'";
@@ -163,6 +168,13 @@ switch ($action) {
         break;
     case 'admin':
         # code...
+        // Send Logged in user to the admin view
+        // Get the logged in Client Reviews
+        $clientId = $_SESSION['clientData']['clientId'];
+        // Get Reviews by clientId
+        $clientReviews = getReviewsByclientId($clientId);
+        // Build client review HTML
+        $reviewList = buildClientReviewList($clientReviews);
         include '../view/admin.php';
         break;
     case 'logout':

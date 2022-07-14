@@ -213,6 +213,9 @@ function buildVehicleDetailDisplay($vehicleDetail) {
     $dv .= '<div class="car-checkout">Car Price';
     $dv .= "<div class='car-checkout-total'>$ $detail[invPrice].00</div></div>";
     $dv .= '<div class="car-checkout-actions"><a class="add-to-cart" href="#" onclick="AddToCart(event);">Order this car</a>';
+    // Store vehicle detail in session for use
+    $_SESSION['model'] = $detail['invModel'];
+    $_SESSION['make'] = $detail['invMake'];
   }
   $dv .= '</div></div></div>';
   return $dv;

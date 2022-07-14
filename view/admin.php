@@ -10,6 +10,7 @@ if (!isset($_SESSION['loggedin'])) {
     $lname = $_SESSION['clientData']['clientLastname'];
     $email = $_SESSION['clientData']['clientEmail'];
     $level = $_SESSION['clientData']['clientLevel'];
+    $clientId = $_SESSION['clientData']['clientId'];
 }
 
 ?><!DOCTYPE html>
@@ -69,7 +70,12 @@ if (!isset($_SESSION['loggedin'])) {
         } ?>
         </div>
     </div>
-
+    <hr>
+    <?php
+    if (isset($_SESSION['loggedin'])) {
+        # code...
+        echo $reviewList;
+    }?>
 </main>
 <!-- Require page footer -->
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>

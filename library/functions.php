@@ -250,8 +250,31 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
    } // ends resizeImage function
 
 
+/**************************
+ * Functions for Reviews
+ * 
+ ***************************/
 
-
+//  HTML for user logged in but vehicle has no reviews yet
+// function reviewInvite($clientScreenName) {
+//     $rev = '<p>Be the first to write a review for this vehicle</p>';
+//     $rev .= '<form id="review-form" action="/phpmotors/reviews/index.php" method="post">';
+//     $rev .=  '<p>';
+//     $rev .= "<label for='screenName'>Screen Name</label><span style='color:#B30000'>*</span><br />";
+//     $rev .= "<input type='text' id='screenName' name='screenName' value='$clientScreenName' readonly";
+//     $rev .= '</p>';
+//     $rev .= '<p>';
+//     $rev .= '<p>';
+//     $rev .= '<label for="clientReview">Client Review</label><span style="color:#B30000">*</span><br />';
+//     $rev .= "<textarea rows='10' id='clientReview' name='clientReview' required placeholder='Enter your review here'}/></textarea>";
+//     $rev .= '</p>';
+//     $rev .= '<p>';
+//     $rev .= '<input type="submit" name="submit" id="regbtn" value="submit review">';
+//     $rev .= '<input type="hidden" name="action" value="addReview">';
+//     $rev .= '</p>';
+//     $rev .= '</form>';
+//     return $rev;
+// }
 
 
 

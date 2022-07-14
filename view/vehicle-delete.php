@@ -109,6 +109,7 @@ $level = $_SESSION['clientData']['clientLevel'];
     </p>
   </form>
 </div>
+<?php var_dump($invInfo);?>
 </main>
 <!-- Require page footer -->
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>

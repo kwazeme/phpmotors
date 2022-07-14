@@ -244,7 +244,7 @@
   .validation {
     display: none;
     position: absolute;
-    content: " ";
+    content: "*";
     height: 60px;
     width: 30px;
     right: 15px;
@@ -420,3 +420,38 @@ img.imgthumb {width: 40%;}
 
 aside.thumbDiv li { list-style: none;}
 
+/* Only Review CSS  */
+#review-form {
+  background-color: var(--whiteff);
+  margin: 30px auto;
+  text-align: left;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+textarea#reviewText {width: 99%;}
+ul.reviewList {
+  list-style: none;
+  text-align: left;
+  background-color: var(--light-blue);
+  padding: 20px;
+  font-size: large;
+}
+
+ul.reviewList li {
+  background-color: var(--whiteff);
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+ul.clientRevList {
+  list-style: none;
+  padding: 10px;
+  font-size: larger;
+ }
+
+ ul.clientRevList li {
+  padding: 1vw;
+  border: 1px solid var(--darker-blue);
+ }

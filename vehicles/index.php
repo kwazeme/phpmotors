@@ -17,6 +17,9 @@ require_once '../model/main-model.php';
 // Get the vehicles model
 require_once '../model/vehicles-model.php';
 
+// Get reviews php into scope
+require_once '../model/reviews-model.php';
+
 // Get functions.php into scope
 require_once '../model/uploads-model.php';
 
@@ -26,13 +29,16 @@ require_once '../library/functions.php';
 // Gets the array of classificationList & classifications
 $classificationsList = getClassificationList();
 $classifications = getClassifications();
-/* 
-// Test data received from the database.
-echo "<pre>";
-var_dump($classificationsList);
-echo "</pre>";
-exit;
- */
+
+// Get the function for logged in no reviews HTML
+// $revInvite = reviewInvite($clientScreenName);
+
+// // Get all reviews from the table
+// $reviews = getReviews();
+
+// // Build review HTML
+// $reviewDisplay = buildReviewDisplay($reviews);
+
 // Get navBar
 $navigation = navBar($classifications);
 // Navigation bar using the $classifications array.
@@ -262,6 +268,19 @@ switch ($action) {
             $thumbImagesDisplay = buildThumbImagesDisplay($thumbImages);
             // var_dump($thumbImagesDisplay);
             // exit;
+            // Build review List for specific vehicle
+            // Get all reviews from the table
+            $reviews = getReviewsByInvid($invId);
+            // Check for no Reviews present for vehicle
+            if (!count($reviews)) {
+                # code...
+                $beFirst = "<h3 class='error'>&#11088;&#11088;&#11088;&#11088;&#11088;&#11088; Be the first to write a review for...";
+                $_SESSION['beFirst'] = $beFirst;
+            } else {
+                # code...
+                // Build review HTML
+                $reviewDisplay = buildReviewDisplay($reviews);
+            }
         }
         include '../view/vehicle-detail.php';
 

@@ -60,5 +60,25 @@ SELECT * FROM inventory JOIN images ON inventory.invId = images.invId WHERE inve
 -- 
 SELECT * FROM inventory JOIN images ON inventory.invId = images.invId WHERE inventory.invId = :invId AND images.imgPrimary = 1  AND images.imgPath NOT LIKE "%-tn%"
 
+-- Review table create
+CREATE TABLE `phpmotors`.`reviews` 
+(`reviewId` INT UNSIGNED NOT NULL AUTO_INCREMENT , 
+`reviewText` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL , 
+`reviewDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+`invId` INT UNSIGNED NOT NULL , 
+`clientId` INT UNSIGNED NOT NULL , 
+PRIMARY KEY (`reviewId`)) ENGINE = InnoDB;
+
+-- Foriegn Keys clients, inventory and reviews tables
+ALTER TABLE `reviews` 
+ADD CONSTRAINT `FK_reviews_clients` 
+FOREIGN KEY (`clientId`) REFERENCES `clients`(`clientId`) 
+ON DELETE CASCADE ON UPDATE CASCADE; ALTER TABLE `reviews` 
+ADD CONSTRAINT `FK_reviews_inventory` FOREIGN KEY (`invId`) 
+REFERENCES `inventory`(`invId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
+SELECT * 
+            FROM reviews 
+            WHERE invId = :invId
+            ORDER BY reviewDate DESC';
